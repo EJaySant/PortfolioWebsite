@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,400;0,600;0,700;1,100;1,400;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', Arial, sans-serif;
+}
+
+:root {
+    --prime-color: rgb(255, 232, 169);
+    --second-color: rgb(0, 16, 104);
+}
+
+section {
+    width: 100%;
+}
+
+#cover {
+    display: grid;
+    height: 700px;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+}
+
+#cover h1 {
+    font-size: 4rem;
+    text-align: center;
+}
+
+#project-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+}
+
+/* Cube */
+.box {
+    --size: 100px;
+}
+
+.face {
+    width: var(--size);
+    height: var(--size);
+    background-color: var(--prime-color);
+}
