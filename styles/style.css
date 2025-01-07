@@ -4,11 +4,17 @@
     margin: 0;
     padding: 0;
     font-family: 'Raleway', Arial, sans-serif;
+    box-sizing: border-box;
 }
 
 :root {
     --prime-color: rgb(255, 232, 169);
     --second-color: rgb(0, 16, 104);
+    --back-color: rgb(0, 6, 37);
+}
+
+body {
+    background-color: var(--back-color);
 }
 
 section {
@@ -24,9 +30,14 @@ section {
     color: white;
 }
 
-#cover h1 {
-    font-size: 4rem;
+#title-name {
     text-align: center;
+    font-size: 4rem;
+    height: 100%;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: grid;
+    align-content: center;
 }
 
 #project-list {
@@ -35,13 +46,101 @@ section {
     justify-items: center;
 }
 
+#objects {
+    position: absolute;
+    justify-self: center;
+    perspective: 800px;
+    perspective-origin: 75% -200px;
+}
+
+img {
+    width: 100%;
+}
+
+#project-list {
+    display: grid;
+}
+
+#project-list > div {
+    margin: 0.5rem;
+    transition: box-shadow 0.5s;
+    cursor: pointer;
+}
+
+#project-list h2 {
+    width: 100%;
+    text-align: center;
+    background-color: var(--second-color);
+    color: white;
+}
+
+#project-list > div:hover {
+    box-shadow: 0 20px 20px black;
+}
+
 /* Cube */
 .box {
+    position: relative;
     --size: 100px;
+    animation: rotation 6s linear infinite;
+    transform-style: preserve-3d;
+    transform-origin: center 50px -50px;
 }
 
 .face {
+    position: absolute;
     width: var(--size);
     height: var(--size);
-    background-color: var(--prime-color);
+    background-color: hsl(360, 100%, var(--lighting));
+    transform-style: preserve-3d;
+}
+
+.face.front {
+    --lighting: 62%;
+}
+
+.face.bottom {
+    top: 100%;
+    transform-origin: bottom;
+    transform: rotateX(90deg);
+    --lighting: 74%;
+}
+
+.face.top {
+    bottom: 100%;
+    transform-origin: bottom;
+    transform: rotateX(90deg);
+    --lighting: 78%;
+}
+
+.face.back {
+    bottom: 200%;
+    transform-origin: center 100px -50px;
+    transform: rotateX(180deg);
+    --lighting: 80%;
+
+}
+
+.face.right {
+    left: 100px;
+    transform-origin: left;
+    transform: rotateY(90deg);
+    --lighting: 70%;
+}
+
+.face.left {
+    right: 100%;
+    transform-origin: right;
+    transform: rotateY(-90deg);
+    --lighting: 70%;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotateY(0);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
 }
